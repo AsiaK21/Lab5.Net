@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
             <th>
-                Teailer
+                Trailer
             </th>
             <th>
                 
@@ -44,19 +44,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>
-                <td>
-                    @{
-                        var controller = new HomeController(new MoviesDbContext(new DbContextOptions<MoviesDbContext>()));
-                        string trailerLink = item.TrailerLink;
-                        string embedLink = controller.GetEmbedLink(trailerLink);
-                    }
-                    @if (!string.IsNullOrEmpty(embedLink))
-                    {
-                        <iframe width="640" height="360" src="@embedLink" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                    }
-                </td>
+            <td>
+                <a href="@item.TrailerLink">Trailer</a>
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

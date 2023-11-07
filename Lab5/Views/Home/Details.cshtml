@@ -28,11 +28,15 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Rating)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrailerLink)
+        <dt class="col-sm-2">
+            Trailer
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrailerLink)
+        <dd class="col-sm-10">
+            @{
+                var youtubeVideoId = System.Web.HttpUtility.ParseQueryString(new Uri(Model.TrailerLink).Query).Get("v");
+                var youtubeEmbedUrl = $"https://www.youtube.com/embed/{youtubeVideoId}";
+            }
+            <iframe width="640" height="360" src="@youtubeEmbedUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </dd>
     </dl>
 </div>
